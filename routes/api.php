@@ -22,5 +22,6 @@ Route::prefix('v1')->group(function () {
     // Menghandle comments
     Route::prefix('comments')->group(function () {
         Route::post('/', [CommentsController::class,'store']); // simpan komentar baru
+        Route::delete('{id}', [CommentsController::class,'destroy']); // menghapus komentar
     });
 });
