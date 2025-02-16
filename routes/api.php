@@ -25,4 +25,10 @@ Route::prefix('v1')->group(function () {
         Route::post('/', [CommentsController::class,'store']); // simpan komentar baru
         Route::delete('{id}', [CommentsController::class,'destroy']); // menghapus komentar
     });
+
+    // Menghandle likes
+    Route::prefix('likes')->group(function () {
+        Route::post('/', [LikesController::class,'store']); // simpan like baru
+        Route::delete('{id}', [LikesController::class,'destroy']); // menghapus like
+    });
 });
