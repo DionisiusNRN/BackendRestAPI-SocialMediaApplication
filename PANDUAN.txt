@@ -1,0 +1,33 @@
+1. Buat story aplikasinya
+2. Buat DBDiagram
+3. install Laravel
+4. buat database
+5. .env koneksikan dengan database
+6. terminal: php artisan install:api (membuat route api dan dependency lain untuk kebutuhan api) (yes)
+7. membuat migration (create) bentuk jamak
+8. generate table di migration
+9. run migration
+10. pakai seeder, lalu jalankan seed nya (untuk testing pakai sampling data)
+11. Handle Posts Route (api.php):
+	- Mengambil semua data
+	- Menyimpan data
+	- Mengambil detail data by id
+	- Mengupdate data
+	- Menghapus data
+12. lalu buat controllernya (di tes dulu index pakai postman http://127.0.0.1:8000/api/v1/posts)
+13. bikin model (singular, contoh: Post) lalu buat fillable dan softDeletes, lalu tes postman
+14. Melanjutkan handle method di controller:
+	- handle methode store dgn validasi
+	- handle method show dengan parameter id
+	- handle method update dengan parameter request dan id
+	- handle method delete/destroy dengan parameter id
+15. (Jika ada) lanjutkan handle table lain mulai dari step 11 - 14 dan di sesuaikan
+16. (disesuaikan) instalasi JWT: composer require tymon/jwt-auth
+17. (lanjutan 16) publish package-nya: php artisan vendor:publish --provider="Tymon\JWTAuth\Providers\LaravelServiceProvider" dan untuk generate code secret key: php artisan jwt:secret
+18. menambahkan use Tymon\JWTAuth\Contracts\JWTSubject; model User dan implements JWTSubject. tambahkan method getJWTIndetifier() dan getJWTCustomClaims()
+19. buat JWTÀuthController untuk handle login dan register serta Routesnya di api.php
+20. buat JWTMiddleware lalu lengkapi method handle dan terapkan pada routes/api.php yang membutuhkan middlewarenya
+21. Ambil token pada Authentication Login lalu terapkan pada API yang validasinya requires user_id (contoh).
+22. Taruh token pada postman Header berikan key sesuai dengan hasHeader("Authorization") dan token yg didapat dari login. setelah semua berhasil, lanjut.
+23. Definisikan relasi antar table pada model di table parent (contoh: Post)
+24. Method index pada PostController perlu ditambah 'with' seperti ini: Post::with(['user', 'comments', 'likes'])->get(); agar pada saat pengambilan data Post sekalian mengambil data di mention di with. dan ini pemanggilannya lebih efisien
