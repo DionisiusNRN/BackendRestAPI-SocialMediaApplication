@@ -35,4 +35,14 @@ class LikesController extends Controller
             "message"=> "Berhasil Like",
             "data"=> $like,
         ], 201);
+    }
+
+    public function destroy($id) {
+        Like::destroy($id);
+
+        return response()->json([
+            "success"=> true,
+            "message"=> "Like berhasil dihapus"
+        ]);
+    }
 }

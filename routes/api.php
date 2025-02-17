@@ -4,6 +4,8 @@ use App\Http\Controllers\CommentsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostsController;
+use App\Http\Controllers\LikesController;
+use App\Http\Controllers\MessagesController;
 use PHPUnit\Framework\Attributes\Group;
 
 Route::get('/user', function (Request $request) {
@@ -31,4 +33,12 @@ Route::prefix('v1')->group(function () {
         Route::post('/', [LikesController::class,'store']); // simpan like baru
         Route::delete('{id}', [LikesController::class,'destroy']); // menghapus like
     });
+
+    // Menghandle messages
+    Route::prefix('messages')->group(function () {
+        Route::post('/', [MessagesController::class,'store']); // Kirim / menyimpan pesan
+        Route::get('{id}', [MessagesController::class,'show']); // lihat detail pesan
+        Route::delete('{id}', [MessagesController::class,'destroy']); // Menghapus pesan
+    });
+
 });
